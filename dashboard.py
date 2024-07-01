@@ -91,20 +91,13 @@ def create_heatmap(chart, x_values, y_values, values, title, value_description, 
     series.invalidate_intensity_values(data)
     series.hide_wireframe()
 
-    if palette_steps:
-        series.set_palette_colors(
-            steps=palette_steps,
-            look_up_property='value',
-            percentage_values=False
-        )
-    else:
-        series.set_palette_colors(
-            steps=[
-                    {'value': 0, 'color': lc.Color(0, 0, 139)},    # Deep blue
-                    {'value': 0.25, 'color': lc.Color(0, 104, 204)},  # Bright blue
-                    {'value': 0.5, 'color': lc.Color(255, 140, 0)},  # Bright orange
-                    {'value': 0.75, 'color': lc.Color(255, 185, 110)}, # Light orange
-                    {'value': 1.0, 'color': lc.Color(255, 255, 255)},  # White
+    series.set_palette_colors(
+        steps=[
+                {'value': 0, 'color': lc.Color(0, 0, 139)},    # Deep blue
+                {'value': 0.25, 'color': lc.Color(0, 104, 204)},  # Bright blue
+                {'value': 0.5, 'color': lc.Color(255, 140, 0)},  # Bright orange
+                {'value': 0.75, 'color': lc.Color(255, 185, 110)}, # Light orange
+                {'value': 1.0, 'color': lc.Color(255, 255, 255)},  # White
             ],
             look_up_property='value',
             percentage_values=True
@@ -125,10 +118,7 @@ y_values_intensity = [point.y for point in gdfs['intensity'].geometry]
 values_intensity = gdfs['intensity']['value'].tolist()
 
 # Create the intensity heatmap with specified palette
-create_heatmap(chart_intensity, x_values_intensity, y_values_intensity, values_intensity, 'Modified Mercalli Intensity', 'mmi') #palette_steps=[
-#    {'value': min(values_intensity), 'color': lc.Color(0, 64, 128)},
-#    {'value': max(values_intensity), 'color': lc.Color(255, 128, 64)},
-#])
+create_heatmap(chart_intensity, x_values_intensity, y_values_intensity, values_intensity, 'Modified Mercalli Intensity', 'mmi')
 
 # Extract values for plotting for pga
 x_values_pga = [point.x for point in gdfs['pga'].geometry]
