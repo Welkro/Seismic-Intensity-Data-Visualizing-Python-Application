@@ -55,59 +55,69 @@ Ensure you have a suitable IDE like Visual Studio Code or PyCharm, and set up a 
 
 The dataset used in this project is sourced from the [Shaking Layers GeoNet](https://shakinglayers.geonet.org.nz/). This data includes various seismic parameters stored in TIFF files. The available data is event-based, generated for specific earthquake events rather than continuously updated in real-time.
 
-1. **Loading Data Files**: Read the TIFF files using Rasterio.
+### **Loading Data Files**
 
-   ```python
-   import rasterio
+Read the TIFF files using Rasterio.
 
-   # Function to read a TIFF file and return the data and transformation matrix
-   def read_tiff(file_path):
-       with rasterio.open(file_path) as src:
-           data = src.read(1)
-           transform = src.transform
-       return data, transform
-   ```
-2. **Basic Data Processing Techniques**: Extract coordinates and values from the raster data.
+```python
+import rasterio
 
-   ```python
-   # Function to extract coordinates and values from the TIFF data
-   def extract_coordinates_and_values(data, transform):
-       rows, cols = data.shape
-       x_coords = []
-       y_coords = []
-       values = []
+# Function to read a TIFF file and return the data and transformation matrix
+def read_tiff(file_path):
+    with rasterio.open(file_path) as src:
+        data = src.read(1)
+        transform = src.transform
+    return data, transform
+```
 
-       for row in range(rows):
-           for col in range(cols):
-               x, y = transform * (col, row)
-               x_coords.append(x)
-               y_coords.append(y)
-               values.append(data[row, col])
+### **Basic Data Processing Techniques**
 
-       return x_coords, y_coords, values
-   ```
-3. **Handling and Preprocessing Data**: Create GeoDataFrames for each parameter.
+Extract coordinates and values from the raster data.
 
-   ```python
-   import geopandas as gpd
+```python
+# Function to extract coordinates and values from the TIFF data
+def extract_coordinates_and_values(data, transform):
+    rows, cols = data.shape
+    x_coords = []
+    y_coords = []
+    values = []
 
-   # Dictionary to store GeoDataFrames for each parameter
-   gdfs = {}
+    for row in range(rows):
+        for col in range(cols):
+            x, y = transform * (col, row)
+            x_coords.append(x)
+            y_coords.append(y)
+            values.append(data[row, col])
 
-   # Create GeoDataFrames for each parameter using extracted coordinates and values
-   for key, (data, transform) in data_dict.items():
-       x_coords, y_coords, values = extract_coordinates_and_values(data, transform)
-       gdfs[key] = gpd.GeoDataFrame({'value': values},
-                                    geometry=gpd.points_from_xy(x=x_coords, y=y_coords))
-       gdfs[key].set_crs(epsg=4326, inplace=True)  # Assuming WGS84
-   ```
+    return x_coords, y_coords, values
+```
+
+### **Handling and Preprocessing Data**
+
+Create GeoDataFrames for each parameter.
+
+```python
+import geopandas as gpd
+
+# Dictionary to store GeoDataFrames for each parameter
+gdfs = {}
+
+# Create GeoDataFrames for each parameter using extracted coordinates and values
+for key, (data, transform) in data_dict.items():
+    x_coords, y_coords, values = extract_coordinates_and_values(data, transform)
+    gdfs[key] = gpd.GeoDataFrame({'value': values},
+                                 geometry=gpd.points_from_xy(x=x_coords, y=y_coords))
+    gdfs[key].set_crs(epsg=4326, inplace=True)  # Assuming WGS84
+```
 
 * **EPSG (European Petroleum Survey Group)** : EPSG codes are identifiers for coordinate reference systems (CRS) used to specify how geographic data is projected and transformed. In this case, `epsg=4326` is used.
 * **WGS84 (World Geodetic System 1984)** : WGS84 is a global CRS used by the GPS system. It specifies coordinates in degrees of latitude and longitude. Setting the CRS to WGS84 ensures that the geographic data is correctly aligned on a global scale.
 
 ## Creating Charts for the Dashboard
 
-**Setting Up the Dashboard**: Initialize the dashboard and charts for different parameters.
+### **Setting Up the Dashboard**
+
+Initialize the dashboard and charts for different parameters.
 
 ```python
 import lightningchart as lc
@@ -126,7 +136,9 @@ chart_pgv = dashboard.ChartXY(column_index=0, row_index=1, title='Peak Ground Ve
 chart_psa = dashboard.ChartXY(column_index=1, row_index=1, title='Peak Spectral Acceleration at 1.0s (g)')
 ```
 
-**Customizing Visualizations**: Adjust the appearance of heatmaps by setting palette colors and other visual properties.
+### **Customizing Visualizations**
+
+Adjust the appearance of heatmaps by setting palette colors and other visual properties.
 
 ```python
 from scipy.interpolate import griddata
@@ -162,7 +174,9 @@ def create_heatmap(chart, x_values, y_values, values, grid_size=500):
 * Grid interpolation is a method used to estimate values at unknown points based on known data points. In this project, we use SciPy's `griddata` function to interpolate the seismic data onto a regular grid. This involves creating a mesh grid (grid_x, grid_y) that spans the range of x and y coordinates from the data. The `griddata` function then uses these grids and the known values to estimate the values at each grid point. The method 'nearest' is used to assign the value of the nearest known data point to each grid point.
 * The `set_palette_colors` method allows for customization of the heatmap's color scheme. In this example, we define a color palette with five steps, ranging from deep blue for the lowest values to white for the highest values. This customization enhances the visual differentiation of various intensity levels in the heatmap, making it easier to interpret the data.
 
-**Creating the Heatmaps**: Extract values for plotting and create heatmaps for each parameter.
+### **Creating the Heatmaps**
+
+Extract values for plotting and create heatmaps for each parameter.
 
 ```python
 # Extract values for plotting for intensity
