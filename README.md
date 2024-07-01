@@ -42,7 +42,7 @@ pip install numpy lightningchart geopandas rasterio scipy
 ### **Overview of Libraries**:
 
 - **[NumPy](https://numpy.org/doc/stable/)**: For numerical operations.
-- **[LightningChart](https://lightningchart.com/python-charts/docs/)**: For creating high-performance charts.
+- **[LightningChart Python](https://lightningchart.com/python-charts/docs/)**: For creating high-performance charts.
 - **[GeoPandas](https://geopandas.org/)**: For handling geospatial data.
 - **[Rasterio](https://rasterio.readthedocs.io/en/latest/)**: For reading and writing raster data.
 - **[SciPy](https://docs.scipy.org/doc/scipy/reference/)**: For scientific computations and interpolations.
