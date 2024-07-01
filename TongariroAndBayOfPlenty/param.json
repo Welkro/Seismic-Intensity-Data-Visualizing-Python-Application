@@ -1,0 +1,18 @@
+{
+"event_id": "2024p423234",
+"origin_time": "2024-06-05T14:19:45Z",
+"latitude": "-38.152",
+"longitude": "176.028",
+"depth": "170.4",
+"magnitude": "4.9",
+"src_mech": "ALL",
+"seismic_stations": "170",
+"intensity_observations": "0",
+"tectonic_weighting_IF_CR_SL": [
+0,
+0,
+1
+],
+"event_reference": "2024p423234",
+"rupture_reference": "2024p423234"
+}
