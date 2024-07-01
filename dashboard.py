@@ -13,13 +13,13 @@ dashboard.open(live=True)
 
 # Initialize charts for different earthquake parameters
 chart_intensity = dashboard.ChartXY(
-    column_index=0, row_index=0, column_span=1, row_span=1, title='Modified Mercalli Intensity (mmi)')
+    column_index=0, row_index=0, column_span=1, row_span=1, title="Modified Mercalli Intensity (mmi)")
 chart_pga = dashboard.ChartXY(column_index=1, row_index=0,
-                              column_span=1, row_span=1, title='Peak Ground Acceleration (g)')
+                              column_span=1, row_span=1, title="Peak Ground Acceleration (g)")
 chart_pgv = dashboard.ChartXY(column_index=0, row_index=1,
-                              column_span=1, row_span=1, title='Peak Ground Velocity (cm/s)')
+                              column_span=1, row_span=1, title="Peak Ground Velocity (cm/s)")
 chart_psa = dashboard.ChartXY(column_index=1, row_index=1, column_span=1,
-                              row_span=1, title='Peak Spectral Acceleration at 1.0s (g)')
+                              row_span=1, title="Peak Spectral Acceleration at 1.0s (g)")
 
 # Function to read a TIFF file and return the data and transformation matrix
 def read_tiff(file_path):
@@ -74,12 +74,12 @@ def create_interpolated_grid(x_values, y_values, values, grid_size=500):
     grid_z = griddata((x_values, y_values), values, (grid_x, grid_y), method='nearest')
     return grid_x, grid_y, grid_z
 
+
 # Function to create heatmap using Heatmap Grid Series
-def create_heatmap(chart, x_values, y_values, values, title, value_description, grid_size=500, palette_steps=None):
+def create_heatmap(chart, x_values, y_values, values, grid_size=500):
     grid_x, grid_y, grid_z = create_interpolated_grid(x_values, y_values, values, grid_size)
 
     data = grid_z.tolist()
-
     series = chart.add_heatmap_grid_series(
         columns=grid_size,
         rows=grid_size,
@@ -90,7 +90,6 @@ def create_heatmap(chart, x_values, y_values, values, title, value_description, 
     series.set_intensity_interpolation(True)
     series.invalidate_intensity_values(data)
     series.hide_wireframe()
-
     series.set_palette_colors(
         steps=[
                 {'value': 0, 'color': lc.Color(0, 0, 139)},    # Deep blue
@@ -111,6 +110,7 @@ def create_heatmap(chart, x_values, y_values, values, title, value_description, 
     chart.get_default_y_axis().set_interval(min(y_values), max(y_values))
 
     chart.add_legend(data=series, horizontal=True).set_title('').set_position(23.5, 19.5)
+
 
 # Extract values for plotting for intensity
 x_values_intensity = [point.x for point in gdfs['intensity'].geometry]
