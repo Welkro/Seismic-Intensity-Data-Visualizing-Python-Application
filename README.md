@@ -161,6 +161,8 @@ def create_heatmap(chart, x_values, y_values, values, grid_size=500):
     )
 ```
 
+Grid interpolation is a method used to estimate values at unknown points based on known data points. In this project, we use SciPy's `griddata` function to interpolate the seismic data onto a regular grid. This involves creating a mesh grid (grid_x, grid_y) that spans the range of x and y coordinates from the data. The `griddata` function then uses these grids and the known values to estimate the values at each grid point. The method 'nearest' is used to assign the value of the nearest known data point to each grid point.
+
 The `set_palette_colors` method allows for customization of the heatmap's color scheme. In this example, we define a color palette with five steps, ranging from deep blue for the lowest values to white for the highest values. This customization enhances the visual differentiation of various intensity levels in the heatmap, making it easier to interpret the data.
 
 **Creating the Heatmaps**: Extract values for plotting and create heatmaps for each parameter.
