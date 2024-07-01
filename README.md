@@ -128,7 +128,7 @@ chart_pgv = dashboard.ChartXY(column_index=0, row_index=1, title='Peak Ground Ve
 chart_psa = dashboard.ChartXY(column_index=1, row_index=1, title='Peak Spectral Acceleration at 1.0s (g)')
 ```
 
-**Customizing Visualizations**: Create heatmaps for each parameter.
+**Customizing Visualizations**: Adjust the appearance of heatmaps by setting palette colors and other visual properties.
 
 ```python
 from scipy.interpolate import griddata
@@ -138,13 +138,30 @@ import numpy as np
 def create_heatmap(chart, x_values, y_values, values, grid_size=500):
     grid_x, grid_y = np.mgrid[min(x_values):max(x_values):complex(grid_size), min(y_values):max(y_values):complex(grid_size)]
     grid_z = griddata((x_values, y_values), values, (grid_x, grid_y), method='nearest')
+    data = grid_z.tolist()
+
     series = chart.add_heatmap_grid_series(columns=grid_size, rows=grid_size)
     series.set_start(x=min(x_values), y=min(y_values))
-    series.set_step(x=(max(x_values) - min(x_values)) / grid_size, y=(max(y_values) - min(y_values)) / grid_size)
+    series.set_step(x=(max(x_values) - min(x_values)) / grid_size, 
+	            y=(max(y_values) - min(y_values)) / grid_size)
+
     series.set_intensity_interpolation(True)
-    series.invalidate_intensity_values(grid_z.tolist())
+    series.invalidate_intensity_values(data)
     series.hide_wireframe()
+    series.set_palette_colors(
+        steps=[
+            {'value': 0, 'color': lc.Color(0, 0, 139)},       # Deep blue
+            {'value': 0.25, 'color': lc.Color(0, 104, 204)},  # Bright blue
+            {'value': 0.5, 'color': lc.Color(255, 140, 0)},   # Bright orange
+            {'value': 0.75, 'color': lc.Color(255, 185, 110)},# Light orange
+            {'value': 1.0, 'color': lc.Color(255, 255, 255)}, # White
+        ],
+        look_up_property='value',
+        percentage_values=True
+    )
 ```
+
+The `set_palette_colors` method allows for customization of the heatmap's color scheme. In this example, we define a color palette with five steps, ranging from deep blue for the lowest values to white for the highest values. This customization enhances the visual differentiation of various intensity levels in the heatmap, making it easier to interpret the data.
 
 **Creating the Heatmaps**: Extract values for plotting and create heatmaps for each parameter.
 
@@ -184,7 +201,7 @@ create_heatmap(chart_psa, x_values_psa, y_values_psa, values_psa, 'Peak Spectral
 
 ## **End Result**:
 
-The final result is a dashboard with heatmap visualizations of the four seismic parameters: MMI, PGA, PGV, and PSA. This interactive dashboard allows users to explore and analyze the intensity and distribution of ground shaking for specific earthquake events.
+The final result is a dashboard with heatmap visualizations of the four seismic parameters: MMI, PGA, PGV, and PSA. This interactive dashboard allows users to explore and analyze the intensity and distribution of ground shaking for specific earthquake events. The area in the visualizations depicted is New Zealand's North Island where the earthquake had been detected and measured.
 
 ![1719817939522](image/README/1719817939522.png)
 
