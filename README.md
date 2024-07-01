@@ -102,8 +102,6 @@ The dataset used in this project is sourced from the [Shaking Layers GeoNet](htt
        gdfs[key].set_crs(epsg=4326, inplace=True)  # Assuming WGS84
    ```
 
- **Explanation** :
-
 * **EPSG (European Petroleum Survey Group)** : EPSG codes are identifiers for coordinate reference systems (CRS) used to specify how geographic data is projected and transformed. In this case, `epsg=4326` is used.
 * **WGS84 (World Geodetic System 1984)** : WGS84 is a global CRS used by the GPS system. It specifies coordinates in degrees of latitude and longitude. Setting the CRS to WGS84 ensures that the geographic data is correctly aligned on a global scale.
 
@@ -161,9 +159,8 @@ def create_heatmap(chart, x_values, y_values, values, grid_size=500):
     )
 ```
 
-Grid interpolation is a method used to estimate values at unknown points based on known data points. In this project, we use SciPy's `griddata` function to interpolate the seismic data onto a regular grid. This involves creating a mesh grid (grid_x, grid_y) that spans the range of x and y coordinates from the data. The `griddata` function then uses these grids and the known values to estimate the values at each grid point. The method 'nearest' is used to assign the value of the nearest known data point to each grid point.
-
-The `set_palette_colors` method allows for customization of the heatmap's color scheme. In this example, we define a color palette with five steps, ranging from deep blue for the lowest values to white for the highest values. This customization enhances the visual differentiation of various intensity levels in the heatmap, making it easier to interpret the data.
+* Grid interpolation is a method used to estimate values at unknown points based on known data points. In this project, we use SciPy's `griddata` function to interpolate the seismic data onto a regular grid. This involves creating a mesh grid (grid_x, grid_y) that spans the range of x and y coordinates from the data. The `griddata` function then uses these grids and the known values to estimate the values at each grid point. The method 'nearest' is used to assign the value of the nearest known data point to each grid point.
+* The `set_palette_colors` method allows for customization of the heatmap's color scheme. In this example, we define a color palette with five steps, ranging from deep blue for the lowest values to white for the highest values. This customization enhances the visual differentiation of various intensity levels in the heatmap, making it easier to interpret the data.
 
 **Creating the Heatmaps**: Extract values for plotting and create heatmaps for each parameter.
 
@@ -201,7 +198,7 @@ values_psa = gdfs['psa_1.0']['value'].tolist()
 create_heatmap(chart_psa, x_values_psa, y_values_psa, values_psa, 'Peak Spectral Acceleration at 1.0s', 'g')
 ```
 
-## **End Result**:
+## **End Result**
 
 The final result is a dashboard with heatmap visualizations of the four seismic parameters: MMI, PGA, PGV, and PSA. This interactive dashboard allows users to explore and analyze the intensity and distribution of ground shaking for specific earthquake events. The area in the visualizations depicted is New Zealand's North Island where the earthquake had been detected and measured.
 
