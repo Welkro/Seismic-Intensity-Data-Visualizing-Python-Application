@@ -7,8 +7,8 @@ from scipy.interpolate import griddata
 # Set the license for LightningChart Python
 lc.set_license('LICENSE_KEY')
 
-# Initialize a dashboard with 2x2 grid layout and white theme
-dashboard = lc.Dashboard(columns=2, rows=2, theme=lc.Themes.White)
+# Initialize a dashboard with 2x2 grid layout and dark theme
+dashboard = lc.Dashboard(columns=2, rows=2, theme=lc.Themes.Dark)
 dashboard.open(live=True)
 
 # Initialize charts for different earthquake parameters
@@ -108,7 +108,7 @@ def create_interpolated_heatmap(chart, x_values, y_values, values, title='', uni
     chart.get_default_x_axis().set_interval(min(x_values), max(x_values))
     chart.get_default_y_axis().set_interval(min(y_values), max(y_values))
 
-    chart.add_legend(data=series, horizontal=True).set_title(title).set_position(23.5, 19.5)
+    chart.add_legend(data=series, horizontal=True).set_title(title).set_position(24.0, 19.5)
 
 
 # Extract values for plotting for intensity

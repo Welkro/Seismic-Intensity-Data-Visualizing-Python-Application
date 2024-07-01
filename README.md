@@ -202,7 +202,7 @@ create_heatmap(chart_psa, x_values_psa, y_values_psa, values_psa, 'Peak Spectral
 
 The final result is a dashboard with heatmap visualizations of the four seismic parameters: MMI, PGA, PGV, and PSA. This interactive dashboard allows users to explore and analyze the intensity and distribution of ground shaking for specific earthquake events. The area in the visualizations depicted is New Zealand's North Island where the earthquake had been detected and measured.
 
-![1719817939522](image/README/1719817939522.png)
+![1719825713388](image/README/1719825713388.png)
 
 ## Conclusion
 
