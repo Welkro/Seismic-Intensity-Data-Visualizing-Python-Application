@@ -8,20 +8,20 @@ Ground shaking is a fundamental characteristic of earthquakes and can cause sign
 
 ## Understanding Seismic Parameters
 
-To better appreciate the visualization of ground shaking data, it's essential to understand the four critical seismic parameters used in this project:
+To better understand the visualization of ground shaking data, it's good to understand the four main seismic parameters used in this project:
 
 1. **Modified Mercalli Intensity (MMI)**:
 
-   - **Explanation**: MMI is a qualitative measure of the intensity of shaking experienced during an earthquake, as perceived by people and observed through damage to structures. It ranges from I (not felt) to XII (total destruction).
+   - MMI is a qualitative measure of the intensity of shaking experienced during an earthquake, as perceived by people and observed through damage to structures. It ranges from I (not felt) to XII (total destruction).
 2. **Peak Ground Acceleration (PGA)**:
 
-   - **Explanation**: PGA measures the maximum acceleration of the ground during an earthquake, typically expressed in g (gravity). Assessing the earthquake's potential damage to buildings and infrastructure is crucial.
+   - PGA measures the maximum acceleration of the ground during an earthquake, typically expressed in g (gravity). Assessing the earthquake's potential damage to buildings and infrastructure is crucial.
 3. **Peak Ground Velocity (PGV)**:
 
-   - **Explanation**: PGV represents the maximum ground velocity reached during an earthquake, expressed in cm/s. It is an essential parameter for understanding the energy released by the earthquake and its impact on structures.
+   - PGV represents the maximum ground velocity reached during an earthquake, expressed in cm/s. It is an essential parameter for understanding the energy released by the earthquake and its impact on structures.
 4. **Peak Spectral Acceleration (PSA)**:
 
-   - **Explanation**: PSA measures the maximum acceleration response of a building or structure at a specific natural period (e.g., 1.0 seconds) during an earthquake, expressed in g. It is used in designing buildings to withstand seismic forces.
+   - PSA measures the maximum acceleration response of a building or structure at a specific natural period (e.g., 1.0 seconds) during an earthquake, expressed in g. It is used in designing buildings to withstand seismic forces.
 
 ## LightningChart Python
 
@@ -49,7 +49,7 @@ pip install numpy lightningchart geopandas rasterio scipy
 
 ### Setting Up the Development Environment:
 
-Ensure you have a suitable IDE or text editor like Visual Studio Code or PyCharm, and set up a virtual environment to manage dependencies.
+Ensure you have a suitable IDE like Visual Studio Code or PyCharm, and set up a virtual environment to manage dependencies.
 
 ## Loading and Processing Data
 
