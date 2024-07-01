@@ -5,7 +5,7 @@ import lightningchart as lc
 from scipy.interpolate import griddata
 
 # Set the license for LightningChart Python
-lc.set_license("LICENSE_KEY")
+lc.set_license('LICENSE_KEY')
 
 # Initialize a dashboard with 2x2 grid layout and white theme
 dashboard = lc.Dashboard(columns=2, rows=2, theme=lc.Themes.White)
@@ -68,25 +68,24 @@ for key, (data, transform) in data_dict.items():
                                  geometry=gpd.points_from_xy(x=x_coords, y=y_coords))
     gdfs[key].set_crs(epsg=4326, inplace=True)  # Assuming WGS84
 
-# Function to create a grid and interpolate data
-def create_interpolated_grid(x_values, y_values, values, grid_size=500):
-    grid_x, grid_y = np.mgrid[min(x_values):max(x_values):complex(grid_size), min(y_values):max(y_values):complex(grid_size)]
-    grid_z = griddata((x_values, y_values), values, (grid_x, grid_y), method='nearest')
-    return grid_x, grid_y, grid_z
-
 
 # Function to create heatmap using Heatmap Grid Series
-def create_heatmap(chart, x_values, y_values, values, grid_size=500):
-    grid_x, grid_y, grid_z = create_interpolated_grid(x_values, y_values, values, grid_size)
+def create_interpolated_heatmap(chart, x_values, y_values, values, title='', unit='', grid_size=500):
 
+    # Create the interpolated grid
+    grid_x, grid_y = np.mgrid[min(x_values):max(x_values):complex(grid_size), min(y_values):max(y_values):complex(grid_size)]
+    grid_z = griddata((x_values, y_values), values, (grid_x, grid_y), method='nearest')
     data = grid_z.tolist()
+
     series = chart.add_heatmap_grid_series(
         columns=grid_size,
         rows=grid_size,
     )
+
     series.set_start(x=min(x_values), y=min(y_values))
     series.set_step(x=(max(x_values) - min(x_values)) / grid_size,
                     y=(max(y_values) - min(y_values)) / grid_size)
+    
     series.set_intensity_interpolation(True)
     series.invalidate_intensity_values(data)
     series.hide_wireframe()
@@ -109,7 +108,7 @@ def create_heatmap(chart, x_values, y_values, values, grid_size=500):
     chart.get_default_x_axis().set_interval(min(x_values), max(x_values))
     chart.get_default_y_axis().set_interval(min(y_values), max(y_values))
 
-    chart.add_legend(data=series, horizontal=True).set_title('').set_position(23.5, 19.5)
+    chart.add_legend(data=series, horizontal=True).set_title(title).set_position(23.5, 19.5)
 
 
 # Extract values for plotting for intensity
@@ -118,7 +117,7 @@ y_values_intensity = [point.y for point in gdfs['intensity'].geometry]
 values_intensity = gdfs['intensity']['value'].tolist()
 
 # Create the intensity heatmap with specified palette
-create_heatmap(chart_intensity, x_values_intensity, y_values_intensity, values_intensity, 'Modified Mercalli Intensity', 'mmi')
+create_interpolated_heatmap(chart_intensity, x_values_intensity, y_values_intensity, values_intensity, 'Modified Mercalli Intensity', 'mmi')
 
 # Extract values for plotting for pga
 x_values_pga = [point.x for point in gdfs['pga'].geometry]
@@ -126,7 +125,7 @@ y_values_pga = [point.y for point in gdfs['pga'].geometry]
 values_pga = gdfs['pga']['value'].tolist()
 
 # Create the pga heatmap
-create_heatmap(chart_pga, x_values_pga, y_values_pga, values_pga, 'Peak Ground Acceleration', 'g')
+create_interpolated_heatmap(chart_pga, x_values_pga, y_values_pga, values_pga, 'Peak Ground Acceleration', 'g')
 
 # Extract values for plotting for pgv
 x_values_pgv = [point.x for point in gdfs['pgv'].geometry]
@@ -134,7 +133,7 @@ y_values_pgv = [point.y for point in gdfs['pgv'].geometry]
 values_pgv = gdfs['pgv']['value'].tolist()
 
 # Create the pgv heatmap
-create_heatmap(chart_pgv, x_values_pgv, y_values_pgv, values_pgv, 'Peak Ground Velocity', 'cm/s')
+create_interpolated_heatmap(chart_pgv, x_values_pgv, y_values_pgv, values_pgv, 'Peak Ground Velocity', 'cm/s')
 
 # Extract values for plotting for psa at 1.0s
 x_values_psa = [point.x for point in gdfs['psa_1.0'].geometry]
@@ -142,4 +141,4 @@ y_values_psa = [point.y for point in gdfs['psa_1.0'].geometry]
 values_psa = gdfs['psa_1.0']['value'].tolist()
 
 # Create the psa heatmap
-create_heatmap(chart_psa, x_values_psa, y_values_psa, values_psa, 'Peak Spectral Acceleration at 1.0s', 'g')
+create_interpolated_heatmap(chart_psa, x_values_psa, y_values_psa, values_psa, 'Peak Spectral Acceleration at 1.0s', 'g')
