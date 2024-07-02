@@ -70,7 +70,7 @@ for key, (data, transform) in data_dict.items():
 
 
 # Function to create heatmap using Heatmap Grid Series
-def create_interpolated_heatmap(chart, x_values, y_values, values, title='', unit='', grid_size=500):
+def create_interpolated_heatmap(chart, x_values, y_values, values, title, unit, grid_size=500):
 
     # Create the interpolated grid
     grid_x, grid_y = np.mgrid[min(x_values):max(x_values):complex(grid_size), min(y_values):max(y_values):complex(grid_size)]
@@ -108,7 +108,7 @@ def create_interpolated_heatmap(chart, x_values, y_values, values, title='', uni
     chart.get_default_x_axis().set_interval(min(x_values), max(x_values))
     chart.get_default_y_axis().set_interval(min(y_values), max(y_values))
 
-    chart.add_legend(data=series, horizontal=True).set_title(title).set_position(24.0, 19.5)
+    chart.add_legend(data=series, horizontal=True).set_title('').set_position(24.0, 19.5)
 
 
 # Extract values for plotting for intensity
