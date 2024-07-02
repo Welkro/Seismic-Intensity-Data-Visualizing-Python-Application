@@ -4,7 +4,7 @@
 
 ## Introduction
 
-Ground shaking is a fundamental characteristic of earthquakes and can cause significant damage to structures and landscapes, posing a risk to human life and property. Understanding the intensity and distribution of ground shaking is crucial for disaster preparedness, response, and recovery. This article delves into the development of a Python application that leverages LightningChart Python to visualize ground shaking data effectively, focusing on four vital seismic parameters: Modified Mercalli Intensity (MMI), Peak Ground Acceleration (PGA), Peak Ground Velocity (PGV), and Peak Spectral Acceleration (PSA).
+Ground shaking is a fundamental characteristic of earthquakes and can cause significant damage to structures and landscapes, posing a risk to human life and property. Understanding the intensity and distribution of ground shaking is crucial for disaster preparedness, response, and recovery. This article delves into the development of a Python application that leverages LightningChart Python to visualize ground shaking data effectively, focusing on four vital seismic parameters: Modified Mercalli Intensity (MMI), Peak Ground Acceleration (PGA), Peak Ground Velocity (PGV), and Pseudo-Spectral Acceleration (PSA).
 
 ## Understanding Seismic Parameters
 
