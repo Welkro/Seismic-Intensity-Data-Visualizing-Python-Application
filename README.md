@@ -12,14 +12,14 @@ To better understand the visualization of ground shaking data, it's good to unde
 
 1. **Modified Mercalli Intensity (MMI)**:
 
-   - MMI is a qualitative measure of the intensity of shaking experienced during an earthquake, as perceived by people and observed through damage to structures. It ranges from I (not felt) to XII (total destruction).
+   - MMI is a qualitative measure of the intensity of shaking experienced during an earthquake, as perceived by people and observed through damage to structures, so it is subjective as opposed to Richter scale which is objective.  It ranges from I (not felt) to XII (total destruction).
 2. **Peak Ground Acceleration (PGA)**:
 
-   - PGA measures the maximum acceleration of the ground during an earthquake, typically expressed in g (gravity). Assessing the earthquake's potential damage to buildings and infrastructure is crucial.
+   - PGA measures the maximum acceleration of the ground during an earthquake, typically expressed in g (gravity) where 1 g = 9.81m/s². Assessing the earthquake's potential damage to buildings and infrastructure is crucial.
 3. **Peak Ground Velocity (PGV)**:
 
    - PGV represents the maximum ground velocity reached during an earthquake, expressed in cm/s. It is an essential parameter for understanding the energy released by the earthquake and its impact on structures.
-4. **Peak Spectral Acceleration (PSA)**:
+4. **Pseudo-Spectral Acceleration (PSA)**:
 
    - PSA measures the maximum acceleration response of a building or structure at a specific natural period (e.g., 1.0 seconds) during an earthquake, expressed in g. It is used in designing buildings to withstand seismic forces.
 

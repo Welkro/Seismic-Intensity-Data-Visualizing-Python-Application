@@ -19,7 +19,7 @@ chart_pga = dashboard.ChartXY(column_index=1, row_index=0,
 chart_pgv = dashboard.ChartXY(column_index=0, row_index=1,
                               column_span=1, row_span=1, title="Peak Ground Velocity (cm/s)")
 chart_psa = dashboard.ChartXY(column_index=1, row_index=1, column_span=1,
-                              row_span=1, title="Peak Spectral Acceleration at 1.0s (g)")
+                              row_span=1, title="Pseudo-Spectral Acceleration at 1.0s (g)")
 
 # Function to read a TIFF file and return the data and transformation matrix
 def read_tiff(file_path):
@@ -141,4 +141,4 @@ y_values_psa = [point.y for point in gdfs['psa_1.0'].geometry]
 values_psa = gdfs['psa_1.0']['value'].tolist()
 
 # Create the psa heatmap
-create_interpolated_heatmap(chart_psa, x_values_psa, y_values_psa, values_psa, 'Peak Spectral Acceleration at 1.0s', 'g')
+create_interpolated_heatmap(chart_psa, x_values_psa, y_values_psa, values_psa, 'Pseudo-Spectral Acceleration at 1.0s', 'g')
