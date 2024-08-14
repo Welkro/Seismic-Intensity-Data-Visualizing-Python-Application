@@ -1,10 +1,10 @@
 # Seismic Intensity Data Visualizing Python Application
 
- Visualizing ground shaking data utilizing LightningChart Python
+ Utilizing LightningChart Python to visualize ground shaking data
 
 ## Introduction
 
-Ground shaking is a fundamental characteristic of earthquakes and can cause significant damage to structures and landscapes, posing a risk to human life and property. Understanding the intensity and distribution of ground shaking is crucial for disaster preparedness, response, and recovery. This article delves into the development of a Python application that leverages LightningChart Python to visualize ground shaking data effectively, focusing on four vital seismic parameters: Modified Mercalli Intensity (MMI), Peak Ground Acceleration (PGA), Peak Ground Velocity (PGV), and Pseudo-Spectral Acceleration (PSA).
+Ground shaking is a fundamental characteristic of earthquakes and can cause significant damage to structures and landscapes, posing a risk to human life and property. Understanding the intensity and distribution of ground shaking is crucial for disaster preparedness, response, and recovery. This article explores the development of a Python application that leverages LightningChart Python to visualize ground shaking data effectively, focusing on four vital seismic parameters: Modified Mercalli Intensity (MMI), Peak Ground Acceleration (PGA), Peak Ground Velocity (PGV), and Pseudo-Spectral Acceleration (PSA).
 
 ## Understanding Seismic Parameters
 
@@ -220,9 +220,9 @@ The final result is a dashboard with heatmap visualizations of the four seismic 
 
 ## Conclusion
 
-In this article, we explored the development of a ground shaking layers intensity visualization application using Python. We covered setting up the Python environment, loading and processing seismic data, and visualizing this data using LightningChart Python. The use of LightningChart Python offers significant benefits, including high-performance rendering and interactive visualizations, making it an excellent choice for seismic data visualization projects.
+In this article, we explored the development of a ground shaking intensity visualization Python application for visualizing shaking intensity. We covered setting up the Python environment, loading and processing seismic data, and visualizing this data using LightningChart Python. The use of LightningChart Python offers significant benefits, including high-performance rendering and interactive visualizations, making it an excellent choice for seismic data visualization projects.
 
-It is important to note that the data available is event-based and updated based on significant earthquakes as processed by GNS Science seismologists. While real-time streaming is not possible, the application can effectively load and visualize the latest available data for each earthquake event. By following this guide, you can develop a powerful tool to visualize ground shaking layers, aiding in better understanding and preparedness for earthquake impacts. For more details, refer to the [Shaking Layers GeoNet](https://shakinglayers.geonet.org.nz/) for datasets and further resources.
+It is important to note that the data available is event-based and updated based on significant earthquakes as processed by GNS Science seismologists. While real-time streaming is not possible, the application can effectively load and visualize the latest available data for each earthquake event. By following this guide, you can develop a powerful tool to visualize ground shaking intensity, aiding in better understanding and preparedness for earthquake impacts. For more details, refer to the [Shaking Layers GeoNet](https://shakinglayers.geonet.org.nz/) for datasets and further resources.
 
 ## Sources
 
