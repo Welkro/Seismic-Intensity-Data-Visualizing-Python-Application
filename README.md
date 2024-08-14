@@ -125,8 +125,8 @@ import lightningchart as lc
 # Set the license for LightningChart Python
 lc.set_license("LICENSE_KEY")
 
-# Initialize a dashboard with 2x2 grid layout and white theme
-dashboard = lc.Dashboard(columns=2, rows=2, theme=lc.Themes.White)
+# Initialize a dashboard with 2x2 grid layout and dark theme
+dashboard = lc.Dashboard(columns=2, rows=2, theme=lc.Themes.Dark)
 dashboard.open(live=True)
 
 # Initialize charts for different earthquake parameters
